@@ -5,17 +5,17 @@ const dialogues = [
     { id: 'dialogue-4', name: '...' },
     { id: 'dialogue-5', name: 'You' },
     { id: 'dialogue-6', name: '...' },
-    { id: 'dialogue-7', name: 'Chika'},
+    { id: 'dialogue-7', name: 'Chika' },
     { id: 'dialogue-8', name: '...' },
-    { id: 'dialogue-9', name: 'Chika'},
-    { id: 'dialogue-10', name:'Chika'},
+    { id: 'dialogue-9', name: 'Chika' },
+    { id: 'dialogue-10', name: 'Chika' },
     { id: 'dialogue-11', name: '...' },
-    { id: 'dialogue-12', name: 'Suki'},
+    { id: 'dialogue-12', name: 'Suki' },
     { id: 'dialogue-13', name: '...' },
     { id: 'dialogue-14', name: 'You' },
-    { id: 'dialogue-15', name:'Chika'},
+    { id: 'dialogue-15', name: 'Chika' },
     { id: 'dialogue-16', name: '...' },
-    { id: 'dialogue-17', name: 'Suki'},
+    { id: 'dialogue-17', name: 'Suki' },
     { id: 'dialogue-18', name: '...' },
     { id: 'dialogue-19', name: '...' },
     { id: 'dialogue-20', name: '...' }
@@ -87,25 +87,29 @@ function updateDialogue() {
         characterImage.style.opacity = "1";
     }
 
+    // Updated fade-out and background image swap logic
     if (currentDialogueIndex === 2) {
         document.body.classList.add('fade-bg');
+
         setTimeout(() => {
-            const styleSheet = document.styleSheets[0];
-            styleSheet.insertRule("body::before { background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('https://i.imgur.com/yll9nRU.png'); opacity: 1; }", styleSheet.cssRules.length);
+            // Add the new background class after fade-out
+            document.body.classList.add('new-bg');
+
             setTimeout(() => {
+                // Remove the fade-bg class to start fade-in
                 document.body.classList.remove('fade-bg');
-            }, 50);
-        }, 1000);
+            }, 1000); // Ensure this matches the opacity transition duration
+        }, 1000); // Delay before switching background after fade-out
     }
 }
 
-document.getElementById("dialogueBox").addEventListener("click", function() {
+document.getElementById("dialogueBox").addEventListener("click", function () {
     if (currentDialogueIndex < dialogues.length - 1) {
         currentDialogueIndex++;
         updateDialogue();
     }
 });
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     updateDialogue();
 });

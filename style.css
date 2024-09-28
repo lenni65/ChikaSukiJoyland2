@@ -23,11 +23,16 @@ body::before {
     background-repeat: no-repeat;
     z-index: -1;
     opacity: 1;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out, background-image 0s 1s; /* Delay background change until fade-out finishes */
 }
 
 body.fade-bg::before {
     opacity: 0;
+}
+
+body.new-bg::before {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('https://i.imgur.com/yll9nRU.png');
+    opacity: 1; /* Ensure opacity resets after the transition */
 }
 
 .dialogue-box {
@@ -50,9 +55,7 @@ body.fade-bg::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
-        linear-gradient(to bottom, rgba(255, 192, 203, 0.5), rgba(255, 192, 203, 0.5)), 
-        url('https://i.imgur.com/yll9nRU.png') no-repeat center center;
+    background: linear-gradient(to bottom, rgba(255, 192, 203, 0.5), rgba(255, 192, 203, 0.5)), url('https://i.imgur.com/yll9nRU.png') no-repeat center center;
     background-size: cover;
     opacity: 0.5;
     z-index: -1;
@@ -112,11 +115,11 @@ body.fade-bg::before {
     align-items: center;
     justify-content: center;
     height: 100%;
-    gap: 40px; /* Added gap to create space between characters */
+    gap: 30px; /* Space between characters */
 }
 
 #characterImage, #newCharacterImage {
-    height: 60vh;
+    height: 70vh;
     width: auto;
     max-width: 100vw;
     opacity: 0;
